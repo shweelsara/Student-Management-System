@@ -890,12 +890,12 @@
                     .textContent
                     .toLowerCase();
 
+const studentData =
+    name + " " + department + " " + email;
 
-            const matches =
-                name.includes(searchValue) ||
-                department.includes(searchValue) ||
-                email.includes(searchValue);
-
+const matches =
+    studentData.includes(searchValue);
+           
 
             row.style.display =
                 matches ? "" : "none";
