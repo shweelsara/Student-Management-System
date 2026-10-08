@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: #b00020;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Management System</h1>
+
+    <input type="text" id="studentName" placeholder="Student Name">
+    <input type="text" id="department" placeholder="Department">
+    <input type="email" id="email" placeholder="Email">
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentTable"></tbody>
+    </table>
+
+    <script>
+        function addStudent() {
+
+            const name = document.getElementById("studentName").value;
+            const department = document.getElementById("department").value;
+            const email = document.getElementById("email").value;
+
+            if (name === "" || department === "" || email === "") {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            const table = document.getElementById("studentTable");
+            const row = table.insertRow();
+
+            const nameCell = row.insertCell(0);
+            const departmentCell = row.insertCell(1);
+            const emailCell = row.insertCell(2);
+            const actionCell = row.insertCell(3);
+
+            nameCell.textContent = name;
+            departmentCell.textContent = department;
+            emailCell.textContent = email;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-btn";
+
+            deleteButton.onclick = function () {
+                row.remove();
+            };
+
+            actionCell.appendChild(deleteButton);
+
+            document.getElementById("studentName").value = "";
+            document.getElementById("department").value = "";
+            document.getElementById("email").value = "";
+        }
+    </script>
+
+</body>
+</html>
